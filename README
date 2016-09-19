@@ -1,7 +1,7 @@
-bitcoin-seeder
+gulden-seeder
 ==============
 
-Bitcoin-seeder is a crawler for the Bitcoin network, which exposes a list
+Gulden-seeder is a crawler for the Gulden network, which exposes a list
 of reliable nodes via a built-in DNS server.
 
 Features:
