@@ -67,7 +67,7 @@ ____
 For a more robust/permanent setup - that auto starts on server reboot.
 
 1) Modify variables in dnsseed_service.sh
-2) sudo cp dnsseed_service.sh /etc/init.d/<SCRIPT_NAME>
-3) sudo chmod +x /etc/init.d/<SCRIPT_NAME>
-4) sudo service <SCRIPT_NAME> start
-5) sudo update-rc.d <SCRIPT_NAME> defaults
+2) sudo cp dnsseed_service.sh /etc/init.d/guldendnsseed
+3) sudo chmod +x /etc/init.d/guldendnsseed
+4) sudo service guldendnsseed start
+5) sudo update-rc.d guldendnsseed defaults

@@ -15,9 +15,10 @@ RUNTIME=$APPROOT/dnsseed
 PREFIX1=seed
 PREFIX2=dnsseed
 URL=MYURL.com
-EMAIL=admin$$MYURL
+EMAIL=admin@$URL
 PORT=5353
-ARGS=$PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT
+ARGS="$PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT"
+LOGFILE=/dev/null
 
 start() {
   if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
@@ -25,7 +26,7 @@ start() {
     return 1
   fi
   echo 'Starting service...' >&2
-  su -c "start-stop-daemon -SbmCv -x /usr/bin/nohup -p \"$PIDFILE\" -d \"$APPROOT\" -- \"$RUNTIME\" \"$ARGS\" > \"$LOGFILE\"" $WWW_USER
+  su -c "start-stop-daemon -SbmCv -x /usr/bin/nohup -p \"$PIDFILE\" -d \"$APPROOT\" -- \"$RUNTIME\" \"$ARGS\" > \"$LOGFILE\""
   echo 'Service started' >&2
 }
 
