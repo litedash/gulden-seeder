@@ -17,7 +17,7 @@ PREFIX2=dnsseed
 URL=MYURL.com
 EMAIL=admin@$URL
 PORT=5353
-ARGS="$PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT"
+ARGS="-h $PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT"
 LOGFILE=/dev/null
 
 start() {
