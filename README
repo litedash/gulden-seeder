@@ -60,3 +60,14 @@ $ iptables -t nat -A PREROUTING -p udp --dport 53 -j REDIRECT --to-port 5353
 
 If properly configured, this will allow you to run dnsseed in userspace, using
 the -p 5353 option.
+
+
+SETUP
+____
+For a more robust/permanent setup - that auto starts on server reboot.
+
+1) Modify variables in dnsseed_service.sh
+2) sudo cp dnsseed_service.sh /etc/init.d/<SCRIPT_NAME>
+3) sudo chmod +x /etc/init.d/<SCRIPT_NAME>
+4) sudo service <SCRIPT_NAME> start
+5) sudo update-rc.d <SCRIPT_NAME> defaults
