@@ -12,13 +12,13 @@
 APPROOT=<PATH_TO_APPLICATION>
 PIDFILE=$APPROOT/dnsseed.pid
 RUNTIME=$APPROOT/dnsseed
-PREFIXHOST=vps
-PREFIXNAMESERVER=seed
+PREFIX1=seed
+PREFIX2=vps
 URL=MYURL.com
 EMAIL=admin.$URL
 PORT=53
-ARGS="-h $PREFIXHOST.$URL -n $PREFIXNAMESERVER.$URL -m $EMAIL -p $PORT"
-LOGFILE=/dev/null
+ARGS="-h $PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT"
+LOGFILE=$APPROOT/debug.log
 
 start() {
   if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
@@ -26,7 +26,7 @@ start() {
     return 1
   fi
   echo 'Starting service...' >&2
-  su -c "start-stop-daemon -SbmCv -x /usr/bin/nohup -p \"$PIDFILE\" -d \"$APPROOT\" -- \"$RUNTIME\" \"$ARGS\" > \"$LOGFILE\""
+  su -c "start-stop-daemon -SbmCv -x /usr/bin/nohup -p \"$PIDFILE\" -d \"$APPROOT\" -- \"$RUNTIME\" $ARGS > \"$LOGFILE\""
   echo 'Service started' >&2
 }
 

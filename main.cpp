@@ -398,6 +398,10 @@ static const string mainnet_seeds[] = {"seed-000.gulden.com"
                                         , ""
 					};
 static const string testnet_seeds[] = {
+                                        "testseed.gulden.network",
+                                        "testseed.gulden.blue",
+                                        "testseed-00.gulden.blue",
+                                        "testseed-01.gulden.network"
                                         ""
                                        };
 static const string *seeds = mainnet_seeds;
