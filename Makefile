@@ -12,5 +12,7 @@ dns.o: dns.c
 
 %.o: %.cpp
 
-clean: 
-	rm *.o dnsseed
+.PHONY: clean
+
+clean:
+	rm -f *.o dnsseed
