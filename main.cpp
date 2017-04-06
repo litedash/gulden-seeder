@@ -395,9 +395,10 @@ static const string mainnet_seeds[] = {"seed.gulden.network"
                                         , ""
                                         };
 static const string testnet_seeds[] = {
-                                        "testseed.gulden.network",
-                                        "testseed.gulden.blue"
-                                        ""
+                                        "testseed.gulden.network"
+                                        , "testseed.gulden.blue"
+                                        , "testseed.coinpool.nl"
+                                        , ""
                                        };
 static const string *seeds = mainnet_seeds;
 
