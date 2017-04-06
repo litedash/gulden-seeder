@@ -389,19 +389,14 @@ extern "C" void* ThreadStats(void*) {
   } while(1);
 }
 
-static const string mainnet_seeds[] = {"seed-000.gulden.com"
-					, "seed-001.gulden.blue"
-					, "seed-002.gulden.network"
-					, "seed-003.gulden.com"
-					, "seed-004.gulden.blue"
-					, "seed-005.gulden.network"
+static const string mainnet_seeds[] = {"seed.gulden.network"
+                                        , "seed.gulden.com"
+                                        , "amsterdam.gulden.com"
                                         , ""
-					};
+                                        };
 static const string testnet_seeds[] = {
                                         "testseed.gulden.network",
-                                        "testseed.gulden.blue",
-                                        "testseed-00.gulden.blue",
-                                        "testseed-01.gulden.network"
+                                        "testseed.gulden.blue"
                                         ""
                                        };
 static const string *seeds = mainnet_seeds;
@@ -462,7 +457,7 @@ int main(int argc, char **argv) {
       pchMessageStart[0] = 0xfc;
       pchMessageStart[1] = 0xfe;
       pchMessageStart[2] = 0xf7;
-      pchMessageStart[3] = 0x00;
+      pchMessageStart[3] = 0x02;
       seeds = testnet_seeds;
       fTestNet = true;
   }
