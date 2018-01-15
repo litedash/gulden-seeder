@@ -19,7 +19,17 @@ REQUIREMENTS
 
 $ sudo apt-get install build-essential libboost-all-dev libssl-dev
 
-USAGE
+COMPILING
+---------
+Compiling will require boost and ssl.  On debian systems, these are provided
+by `libboost-dev` and `libssl-dev` respectively.
+
+$ make
+
+This will produce the `dnsseed` binary.
+
+
+BASIC USAGE/SETUP
 -----
 
 Assuming you want to run a dns seed on seed.MYURL.com, you will
@@ -38,15 +48,6 @@ On the system vps.MYURL.com, you can now run dnsseed:
 If you want the DNS server to report SOA records, please provide an
 e-mail address (with the @ part replaced by .) using -m.
 
-COMPILING
----------
-Compiling will require boost and ssl.  On debian systems, these are provided
-by `libboost-dev` and `libssl-dev` respectively.
-
-$ make
-
-This will produce the `dnsseed` binary.
-
 
 RUNNING AS NON-ROOT
 -------------------
@@ -64,7 +65,7 @@ the -p 5353 option.
 See also the example at the bottom which gives a working example of how to do this on ubuntu.
 
 
-SETUP
+PERMANENT SETUP
 ____
 For a more robust/permanent setup - that auto starts on server reboot.
 
@@ -74,8 +75,15 @@ For a more robust/permanent setup - that auto starts on server reboot.
 4) sudo service guldendnsseed start
 5) sudo update-rc.d guldendnsseed defaults
 
+ADDITIONAL SETUP
+________________
+The seeders periodically scan for two files "nodes4.txt" (ipv4); "nodes6.txt" (ipv6). (Plain text files with one ip per line - no port numbering)
+If these files are present, the seeders will use these as an additional source of IPs to feed into the crawler, this can help get better network coverage.
 
-EXAMPLE - RUNNING TWO DNS SEEDS ON ONE UBUNTU SERVER USING TWO IPS
+For best seeder performance, it is advised to acquire an external source that can provide such a list of IPs and then use a cronjob to have it periodically place new versions of the lists in these files.
+
+
+EXAMPLE SETUP - RUNNING TWO DNS SEEDS ON ONE UBUNTU SERVER USING TWO IPS (testnet + mainnet)
 __________________________________________________________________
 
 Basic setup to run two DNS seeds from one box (one for mainnet one for testnet)
