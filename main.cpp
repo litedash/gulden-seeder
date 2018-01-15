@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include <atomic>
-
+#include <iostream>
+#include <fstream>
 #include "gulden.h"
 #include "db.h"
 
@@ -191,6 +192,38 @@ extern "C" void* ThreadCrawler(void* data) {
   } while(1);
   return nullptr;
 }
+
+
+extern "C" void* ThreadStaticIps(void* data) {
+  do {
+
+    std::ifstream fStaticIPs4("nodes4.txt");
+    if (fStaticIPs4.good())
+    {
+	std::string line;
+	while (std::getline(fStaticIPs4, line))
+	{
+	    std::istringstream iss(line);
+            db.Add(CAddress(CService(line+":9231"), true));
+	    printf("%s", line.c_str());
+	}
+    }
+    std::ifstream fStaticIPs6("nodes6.txt");
+    if (fStaticIPs6.good())
+    {
+        std::string line;
+        while (std::getline(fStaticIPs6, line))
+        {
+            std::istringstream iss(line);
+            db.Add(CAddress(CService(line+":9231"), true));
+        }
+    }
+
+    Sleep(60000 *5);// 5 minutes
+  } while(1);
+  return nullptr;
+}
+
 
 extern "C" int GetIPList(void *thread, char *requestedHostname, addr_t *addr, int max, int ipv4, int ipv6);
 
@@ -513,6 +546,8 @@ int main(int argc, char **argv) {
   pthread_attr_t attr_crawler;
   pthread_attr_init(&attr_crawler);
   pthread_attr_setstacksize(&attr_crawler, 0x20000);
+  pthread_t statthread;
+  pthread_create(&statthread, &attr_crawler, ThreadStaticIps, nullptr);
   for (int i=0; i<opts.nThreads; i++) {
     pthread_t thread;
     pthread_create(&thread, &attr_crawler, ThreadCrawler, &opts.nThreads);
