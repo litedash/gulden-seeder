@@ -205,7 +205,7 @@ extern "C" void* ThreadStaticIps(void* data) {
 	{
 	    std::istringstream iss(line);
             db.Add(CAddress(CService(line+":9231"), true));
-	    printf("%s", line.c_str());
+	    //printf("%s", line.c_str());
 	}
     }
     std::ifstream fStaticIPs6("nodes6.txt");
