@@ -427,22 +427,13 @@ extern "C" void* ThreadStats(void*) {
   return nullptr;
 }
 
-static const string mainnet_seeds[] = {"seed.gulden.network"
-                                        , "seed.gulden.com"
-                                        , "amsterdam.gulden.com"
-                                        , ""
-                                        };
-static const string testnet_seeds[] = {
-                                        "testseed.gulden.network"
-                                        , "testseed.gulden.blue"
-                                        , "testseed.coinpool.nl"
-                                        , ""
-                                       };
+static const string mainnet_seeds[] = {"seed.litedash.org", "seed2.litedash.org", ""};
+static const string testnet_seeds[] = {"tseed.litedash.org",  "tseed2.litedash.org", ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
   if (!fTestNet){
-    db.Add(CService("kjy2eqzk4zwi5zd3.onion", 9231), true);
+    db.Add(CService("kjy2eqzk4zwi5zd3.onion", 9753), true);
   }
   do {
     for (int i=0; seeds[i] != ""; i++) {
