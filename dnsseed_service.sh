@@ -14,9 +14,9 @@ PIDFILE=$APPROOT/dnsseed.pid
 RUNTIME=$APPROOT/dnsseed
 PREFIX1=seed
 PREFIX2=vps
-URL=MYURL.com
+URL=litedash.org
 EMAIL=admin.$URL
-PORT=53
+PORT=5353
 ARGS="-h $PREFIX1.$URL -n $PREFIX2.$URL -m $EMAIL -p $PORT"
 LOGFILE=$APPROOT/debug.log
 
