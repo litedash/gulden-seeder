@@ -13,11 +13,11 @@
 #define MIN_RETRY 1000
 
 // Don't list clients with a version older than this in dns queries, but continue to record them.
-#define REQUIRE_VERSION 70016
+#define REQUIRE_VERSION 70015
 
 static inline int GetRequireHeight(const bool testnet = fTestNet)
 {
-    return testnet ? 400000 : 350000;
+    return testnet ? 0 : 1457409;
 }
 
 std::string static inline ToString(const CService &ip) {
