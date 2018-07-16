@@ -204,7 +204,7 @@ extern "C" void* ThreadStaticIps(void* data) {
 	while (std::getline(fStaticIPs4, line))
 	{
 	    std::istringstream iss(line);
-            db.Add(CAddress(CService(line+":9231"), true));
+            db.Add(CAddress(CService(line), true));
 	    //printf("%s", line.c_str());
 	}
     }
@@ -215,7 +215,7 @@ extern "C" void* ThreadStaticIps(void* data) {
         while (std::getline(fStaticIPs6, line))
         {
             std::istringstream iss(line);
-            db.Add(CAddress(CService(line+":9231"), true));
+            db.Add(CAddress(CService(line), true));
         }
     }
 
